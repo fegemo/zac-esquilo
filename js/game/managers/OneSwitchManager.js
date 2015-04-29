@@ -2,8 +2,6 @@ ZacEsquilo.OneSwitchManager = function(options, interval, game, soundEffect){
   this.options = options;
   this.interval = interval;
   this.game = game;
-  // this.timer1 = this.game.time.create(false);
-  this.timer1 = this.game.time.events.loop(Phaser.Timer.SECOND * this.interval, this.changeState, this);
   this.selected = 0;
   if (ZacEsquilo.config.soundEffect){
     this.soundEffect = soundEffect;
@@ -18,20 +16,23 @@ ZacEsquilo.OneSwitchManager.prototype = {
   start: function(){
     // Seta o frame do primeiro item para 1
     this.options[0].frame = 1;
+    this.timer1 = this.game.time.events.loop(Phaser.Timer.SECOND * this.interval, this.changeState, this);
     this.timer1.timer.start();
 
     // associar o this.oneSwitchPressed a um evento de teclado
     this.game.input.keyboard.addKeyCapture(Phaser.Keyboard[ZacEsquilo.config.oneSwitchKey]);
-    var key = this.game.input.keyboard.addKey(Phaser.Keyboard[ZacEsquilo.config.oneSwitchKey]);
-    key.onDown.add(this.oneSwitchPressed, this);
+    this.key = this.game.input.keyboard.addKey(Phaser.Keyboard[ZacEsquilo.config.oneSwitchKey]);
+    this.key.onDown.add(this.oneSwitchPressed, this);
   },
 
   stop: function(){
+    this.timer1.timer.remove(this.timer1);
+    this.key.onDown.remove(this.oneSwitchPressed, this);
+
     this.timer1.timer.stop();
   },
 
   changeState: function(){
-
     // armazenar o item atualmente selecionado: var previouslySelctd = this.selected;
     var previouslySelected = this.selected;
 

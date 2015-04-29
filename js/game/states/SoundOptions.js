@@ -28,9 +28,9 @@ ZacEsquilo.SoundOptions.prototype = {
     ZacEsquilo.musicOff = this.game.add.button(halfWidth + quarterWidth, 240, 'music_off', this.music_Off, this, 1, 0);
     ZacEsquilo.musicOff.anchor.setTo(0.5);
 
-    ZacEsquilo.soundEffectsOn = this.game.add.button(halfWidth + 64, 330, 'se_on', this.soundEffects_On, this, 1, 0);
+    ZacEsquilo.soundEffectsOn = this.game.add.button(halfWidth + 64, 330, 'se_on', this.soundeffects_On, this, 1, 0);
     ZacEsquilo.soundEffectsOn.anchor.setTo(1, 0.5);
-    ZacEsquilo.soundEffectsOff = this.game.add.button(halfWidth + quarterWidth, 330, 'se_off', this.soundEffects_Off, this, 1, 0);
+    ZacEsquilo.soundEffectsOff = this.game.add.button(halfWidth + quarterWidth, 330, 'se_off', this.soundeffects_Off, this, 1, 0);
     ZacEsquilo.soundEffectsOff.anchor.setTo(0.5);
 
     // instanciando one switch manager para musica
@@ -39,7 +39,7 @@ ZacEsquilo.SoundOptions.prototype = {
 
     ZacEsquilo.oneswitch_soundEffects = new ZacEsquilo.OneSwitchManager([ZacEsquilo.soundEffectsOn, ZacEsquilo.soundEffectsOff], ZacEsquilo.config.oneSwitchSpeed, this.game, true);
 
-    ZacEsquilo.oneswitchmanager_back = new ZacEsquilo.OneSwitchManager([ZacEsquilo.back], ZacEsquilo.config.oneSwitchSpeed, this.game);
+    ZacEsquilo.oneswitchmanager_back = new ZacEsquilo.OneSwitchManager([ZacEsquilo.back], ZacEsquilo.config.oneSwitchSpeed, this.game, null);
 
   },
 
